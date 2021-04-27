@@ -3,22 +3,16 @@ var height = 450;
 var svg = d3.select("#chart1")
   .append("svg")
   .attr("width", width)
-  .attr("height", height)
-  .style("text-align", "center");
+  .attr("height", height);
+
+var svg2 = d3.select("#chart2")
+  .append("svg")
+  .attr("width", width)
+  .attr("height", height);
 
 d3.csv("villagers.csv").then(function(data) {
   // console.log(data[16]);
-  var color = d3.scaleOrdinal().domain(["Peppy", "Cranky", "Smug", "Big Sister", "Snooty", "Jock", "Lazy", "Normal"]).range(["#4B3B40", "#DE6449", "#F6AE2D", "#9CDE9F", "#407899", "#B7C3F3", "#EF27A6", "#F9B4ED"]);
-
-  var Tooltip = d3.select("#chart1")
-    .append("div")
-    .style("opacity", 0)
-    .attr("class", "tooltip")
-    .style("background-color", "white")
-    .style("padding", "5px")
-    .attr("width", width)
-    .attr("height", height);
-
+  var color = d3.scaleOrdinal().domain(["Cranky", "Peppy", "Smug", "Big Sister", "Snooty", "Jock", "Lazy", "Normal"]).range(["#4B3B40", "#EF27A6", "#F6AE2D", "#9CDE9F", "#407899", "#B7C3F3", "#DE6449", "#F9B4ED"]);
 
 
   var node = svg.append("g")
@@ -34,20 +28,15 @@ d3.csv("villagers.csv").then(function(data) {
       return color(d.Personality);
     })
     .on("mouseover", function(mouseover, d) {
-      console.log(d.Name);
-      Tooltip
-        .style("opacity", 1)
-      return d.Name;
-    }) // What to do when hovereds
-    .on("mousemove", function(mousemove, d) {
-      Tooltip
-        .html(d.Name)
-        .style("left", d3.select(this).attr("cx") + "px")
-        .style("top", d3.select(this).attr("cy") + "px");
+      d3.select('#tooltip').style('opacity', 1).html(d.Name + "<br>" + d.Species);
     })
-    .on("mouseleave", function(mouseleave, d) {
-      Tooltip
-        .style("opacity", 0)
+    .on("mousemove", function(mousemove, d) {
+      d3.select('#tooltip')
+        .style('left', d3.pointer.pageX + 'px')
+        .style('top', d3.pointer.pageY + 'px');
+    })
+    .on("mouseout", function(mouseout, d) {
+      d3.select('#tooltip').style('opacity', 0);
     });
 
   var simulation = d3.forceSimulation()
