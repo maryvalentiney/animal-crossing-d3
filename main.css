@@ -6,8 +6,32 @@
   font-size: 2em;
 }
 
+#tooltip2 {
+  text-align: center;
+  font-family: silicone, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2em;
+}
+
+#tooltip3 {
+  text-align: center;
+  font-family: silicone, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2em;
+}
+
 #chart1 {
   text-align: center;
+}
+
+#chart2 {
+  text-align: center;
+}
+
+#chart3 {
+  text-align: center
 }
 
 h1, h2 {
@@ -21,12 +45,29 @@ svg {
   width=50;
   height=50;
   padding: 0;
+  text-align: center;
 }
 
 #keyContainer1 {
   margin-left: 90px;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(2, 50px);
+  grid-row-gap: 0px;
+}
+
+#keyContainer2 {
+  margin-left: 90px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, 50px);
+  grid-row-gap: 0px;
+}
+
+#keyContainer3 {
+  display: grid;
+  margin-left: 500px;
+  grid-template-columns: repeat(2, 200px);
   grid-template-rows: repeat(2, 50px);
   grid-row-gap: 0px;
 }
